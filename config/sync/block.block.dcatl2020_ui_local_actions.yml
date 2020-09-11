@@ -1,0 +1,20 @@
+uuid: fe5129ac-8935-49bc-92fb-b21eae898c2f
+langcode: en
+status: true
+dependencies:
+  theme:
+    - dcatl2020_ui
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: dcatl2020_ui_local_actions
+theme: dcatl2020_ui
+region: content
+weight: -20
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

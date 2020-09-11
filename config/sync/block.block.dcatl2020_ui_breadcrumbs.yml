@@ -1,0 +1,22 @@
+uuid: 0c3005d2-f20c-4534-b913-20ec15018569
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dcatl2020_ui
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: dcatl2020_ui_breadcrumbs
+theme: dcatl2020_ui
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

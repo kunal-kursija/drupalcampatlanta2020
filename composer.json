@@ -15,8 +15,10 @@
         }
     ],
     "require": {
+        "composer/composer": "^1.10",
         "composer/installers": "^1.9",
         "drupal/admin_toolbar": "^2.3",
+        "drupal/coder": "^8.3",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
@@ -24,7 +26,12 @@
         "drush/drush": "^10.3",
         "kint-php/kint": "^3.3",
         "kint-php/kint-js": "^2.0",
-        "kint-php/kint-twig": "^3.0"
+        "kint-php/kint-twig": "^3.0",
+        "weitzman/drupal-test-traits": "^1.5"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -32,7 +39,73 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "process-timeout": 0
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/CommandEvents.php",
+            "scripts/composer/InstallerEvents.php",
+            "scripts/composer/PackageEvents.php",
+            "scripts/composer/PluginEvents.php"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "DrupalCampAtlanta2020\\Composer\\CommandEvents::refreshSettingsPhp"
+        ],
+        "pre-dependencies-solving": [
+            "DrupalCampAtlanta2020\\Composer\\InstallerEvents::preDependenciesSolving"
+        ],
+        "pre-package-install": [
+            "DrupalCampAtlanta2020\\Composer\\PackageEvents::prePackageInstall"
+        ],
+        "command": [
+            "DrupalCampAtlanta2020\\Composer\\PluginEvents::commandExecution"
+        ],
+        "find-code-violations": [
+            "vendor/bin/phpcs ."
+        ],
+        "fix-code-violations": [
+            "vendor/bin/phpcbf ."
+        ],
+        "shell-script": [
+            "scripts/shell/dcatl2020.sh"
+        ],
+        "php-script": [
+            "@php scripts/php/dcatl2020.php"
+        ],
+        "get-php-version": [
+            "@php --version"
+        ],
+        "build-backend": [
+            "drush cr",
+            "@composer install",
+            "drush updb -y",
+            "drush cim -y"
+        ],
+        "test-backend": [
+            "vendor/bin/phpunit web/modules/custom/dcatl2020/tests/src/ExistingSite/JustAnotherTest.php"
+        ],
+        "build-frontend": [
+            "cd web/themes/custom/dcatl2020_ui && npm install"
+        ],
+        "deploy-and-test": [
+            "@build-backend",
+            "@test-backend",
+            "@build-frontend"
+        ]
+    },
+    "scripts-descriptions": {
+        "find-code-violations": "Runs phpcs to find the code violations.",
+        "fix-code-violations": "Runs phpcbf to fix the code violations.",
+        "shell-script": "Executes our custom shell script for the day",
+        "php-script": "Executes our custom php script for the day",
+        "get-php-version": "Executes 'php --version' command via composer.",
+        "build-backend": "Helps in building the backend.",
+        "test-backend": "Helps in executing automation tests of custom directories.",
+        "build-frontend": "Helps in building the frontend.",
+        "deploy-and-test": "This command does deployment and executes automation tests."
     },
     "extra": {
         "drupal-scaffold": {

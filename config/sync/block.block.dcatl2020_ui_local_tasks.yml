@@ -1,0 +1,22 @@
+uuid: a5176743-4af2-423b-9cdf-a0a2d981cb8c
+langcode: en
+status: true
+dependencies:
+  theme:
+    - dcatl2020_ui
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: dcatl2020_ui_local_tasks
+theme: dcatl2020_ui
+region: content
+weight: -40
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

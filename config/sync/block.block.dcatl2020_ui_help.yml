@@ -1,0 +1,22 @@
+uuid: 661b9bf7-02fd-4179-be36-a3928f0ec69c
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - dcatl2020_ui
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: dcatl2020_ui_help
+theme: dcatl2020_ui
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

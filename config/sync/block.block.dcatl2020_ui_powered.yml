@@ -1,0 +1,22 @@
+uuid: cfcef21a-8b20-4221-82ba-012bcd3a07a4
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dcatl2020_ui
+_core:
+  default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
+id: dcatl2020_ui_powered
+theme: dcatl2020_ui
+region: sidebar_first
+weight: 10
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }
